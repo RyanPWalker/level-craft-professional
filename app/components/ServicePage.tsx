@@ -1,8 +1,9 @@
 import Link from "next/link";
 import ContactCTA from "./ContactCTA";
 import Icon, { type IconName } from "./Icon";
-import { businessId, JsonLd } from "../seo";
-import { site } from "../site";
+import type { Faq } from "../faqs";
+import { areaServedJsonLd, businessId, JsonLd } from "../seo";
+import { servicePages, site } from "../site";
 
 export type ServicePageProps = {
   /** The page's path, title, and description, shared with its metadata. Used for structured data. */
@@ -16,6 +17,7 @@ export type ServicePageProps = {
   offerings: { title: string; text: string }[];
   highlightsTitle: string;
   highlights: { title: string; text: string }[];
+  faqs: Faq[];
   ctaTitle: string;
 };
 
@@ -30,8 +32,18 @@ export default function ServicePage(props: ServicePageProps) {
     url,
     serviceType: props.offerings.map((o) => o.title),
     provider: { "@id": businessId },
-    areaServed: { "@type": "AdministrativeArea", name: `${site.serviceArea}, UT` },
+    areaServed: areaServedJsonLd,
   };
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: props.faqs.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: { "@type": "Answer", text: f.answer },
+    })),
+  };
+  const otherServices = servicePages.filter((p) => `${p.href}/` !== props.page.path);
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -45,6 +57,7 @@ export default function ServicePage(props: ServicePageProps) {
     <main>
       <JsonLd data={serviceJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={faqJsonLd} />
       <section className="page-hero">
         <div className="container page-hero-inner">
           <div>
@@ -117,6 +130,41 @@ export default function ServicePage(props: ServicePageProps) {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container faq-layout">
+          <div>
+            <p className="eyebrow">FAQ</p>
+            <h2>Common questions</h2>
+            <p className="section-intro">
+              Don&apos;t see your question? Call <a href={site.phone.href}>{site.phone.display}</a>.
+            </p>
+          </div>
+          <div className="faq-list">
+            {props.faqs.map((f) => (
+              <details key={f.question} className="faq">
+                <summary>{f.question}</summary>
+                <p>{f.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-alt related">
+        <div className="container">
+          <h2 className="related-title">Other services</h2>
+          <ul className="related-list">
+            {otherServices.map((p) => (
+              <li key={p.href}>
+                <Link href={p.href} className="related-link">
+                  {p.title} <Icon name="arrow" size={16} />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

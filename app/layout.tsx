@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, Inter } from "next/font/google";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
-import { businessId, JsonLd, ogImage } from "./seo";
+import { areaServedJsonLd, businessId, JsonLd, ogImage } from "./seo";
 import { servicePages, site } from "./site";
 import "./globals.css";
 
@@ -40,10 +40,7 @@ const businessJsonLd = {
     addressRegion: "UT",
     addressCountry: "US",
   },
-  areaServed: [
-    { "@type": "City", name: `${site.city}, UT` },
-    { "@type": "AdministrativeArea", name: `${site.serviceArea}, UT` },
-  ],
+  areaServed: areaServedJsonLd,
   knowsAbout: [
     "Home remodeling",
     "Home additions",
@@ -54,6 +51,7 @@ const businessJsonLd = {
     "Drywall",
     "Interior and exterior painting",
     "Tile",
+    "Basement finishing",
     "Concrete driveways and patios",
     "Carpentry",
   ],

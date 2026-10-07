@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicePage from "../components/ServicePage";
+import { commonFaqs } from "../faqs";
 import { pageMetadata } from "../seo";
 
 const page = {
@@ -33,6 +34,19 @@ export default function HomeRenovationPage() {
         { title: "Licensed & Insured", text: "A licensed Utah B100 general contractor with general liability coverage." },
         { title: "One Point of Contact", text: "We coordinate every trade, including plumbing, electrical, and HVAC, so you don't have to." },
         { title: "Clear Communication", text: "A written plan, a realistic schedule, and updates along the way." },
+      ]}
+      faqs={[
+        {
+          question: "Do you do the plumbing, electrical, and HVAC work on a remodel?",
+          answer: "Those trades are handled by qualified plumbing, electrical, and HVAC contractors that we coordinate and schedule as part of your project. Our own crew handles framing, drywall, paint, tile, concrete, and carpentry.",
+        },
+        {
+          question: "What kinds of home projects do you take on?",
+          answer: "Remodels, additions, basement finishing, repairs, and improvements, from a single room to larger projects managed as one job.",
+        },
+        commonFaqs.licensed,
+        commonFaqs.estimate,
+        commonFaqs.area,
       ]}
       ctaTitle="Ready to renovate?"
     />

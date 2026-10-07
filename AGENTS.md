@@ -21,14 +21,15 @@ There is no test suite or linter yet. `yarn build` (which type-checks) is the ve
 
 ## Layout
 
-- `app/site.ts`: business facts (legal name, owner, location, service area, license, phone, email) and the `servicePages` list that drives the nav and footer links
+- `app/site.ts`: business facts (legal name, owner, location, service area and `serviceCities`, license, phone, email) and the `servicePages` list that drives the nav, footer, sitemap, and "Other services" links
+- `app/faqs.ts`: FAQ answers shared across service pages (licensing, estimates, service area)
 - `app/layout.tsx`: root layout, default metadata (`metadataBase`, title template), and the business JSON-LD
 - `app/seo.tsx`: SEO helpers. `pageMetadata()` builds each page's title, description, canonical URL, and Open Graph/Twitter tags. `JsonLd` renders structured data.
 - `app/sitemap.ts`, `app/robots.ts`: generate `sitemap.xml` and `robots.txt` at build time. The sitemap lists the home page plus `servicePages`.
 - `app/og.png/route.tsx`: generates the social share image (`/og.png`) at build time
 - `app/page.tsx`: the homepage. Content (services, process steps, values) lives in arrays at the top of the file.
-- `app/home-renovation/`, `app/hvac/`, `app/commercial/`: service landing pages, to be built out further for SEO and targeting. Each currently renders the shared `ServicePage` template with its own content and `metadata`. A page defines a `page` object (path with trailing slash, title, description), passes it to `pageMetadata()` and `ServicePage`, which emits `Service` and `BreadcrumbList` JSON-LD. A page can diverge from the template when it needs to.
-- `app/components/SiteHeader.tsx` (top bar with license and phone, sticky header), `NavLinks.tsx` (client component, highlights the current page), `SiteFooter.tsx` (multi-column), `ContactCTA.tsx`: shared across pages. The header and footer are rendered in `app/layout.tsx`.
+- `app/home-renovation/`, `app/basement-finishing/`, `app/concrete/`, `app/commercial/`, `app/hvac/`: service landing pages, to be built out further for SEO and targeting. Each currently renders the shared `ServicePage` template with its own content and `metadata`. A page defines a `page` object (path with trailing slash, title, description), passes it to `pageMetadata()` and `ServicePage`, which emits `Service`, `BreadcrumbList`, and `FAQPage` JSON-LD and renders the page's `faqs` plus links to the other service pages. FAQ answers must be visible on the page and truthful. A page can diverge from the template when it needs to.
+- `app/components/SiteHeader.tsx` (top bar with license and phone, sticky header), `NavLinks.tsx` (client component: desktop links, the mobile menu, and current-page highlighting), `SiteFooter.tsx` (multi-column), `ContactCTA.tsx`: shared across pages. The header and footer are rendered in `app/layout.tsx`.
 - `app/components/Logo.tsx`: stand-in spirit-level mark plus the wordmark. Keep it in sync with `app/icon.svg`.
 - `app/components/Icon.tsx`: line icons (24×24, `currentColor` strokes), referenced by name
 - `app/globals.css`: all styles. Plain CSS, with design tokens as custom properties on `:root`.

@@ -40,6 +40,12 @@ export function pageMetadata({
   };
 }
 
+/** Service area for JSON-LD: the county plus its listed cities. */
+export const areaServedJsonLd = [
+  { "@type": "AdministrativeArea", name: `${site.serviceArea}, UT` },
+  ...site.serviceCities.map((city) => ({ "@type": "City", name: `${city}, UT` })),
+];
+
 /** Stable identifier for the business node, so other JSON-LD on the site can reference it. */
 export const businessId = `${site.url}/#business`;
 

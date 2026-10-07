@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicePage from "../components/ServicePage";
+import { commonFaqs } from "../faqs";
 import { pageMetadata } from "../seo";
 
 const page = {
@@ -35,6 +36,19 @@ export default function HvacPage() {
         { title: "Qualified Trades", text: "HVAC, plumbing, and electrical work is done by qualified trades we coordinate." },
         { title: "Licensed & Insured", text: "A licensed Utah B100 general contractor, fully insured, managing the whole job." },
         { title: "Builder's Perspective", text: "We handle the framing, drywall, and finish work HVAC jobs often need." },
+      ]}
+      faqs={[
+        {
+          question: "Does Level Craft install HVAC systems itself?",
+          answer: "No. HVAC work is done by qualified HVAC contractors that we coordinate as part of your remodel, addition, or build-out. We manage the schedule and handle the framing, drywall, and finish work around it.",
+        },
+        {
+          question: "Can you coordinate plumbing and electrical on the same project?",
+          answer: "Yes. We coordinate qualified plumbing and electrical trades alongside HVAC, so the whole project runs on one schedule with one point of contact.",
+        },
+        commonFaqs.licensed,
+        commonFaqs.estimate,
+        commonFaqs.area,
       ]}
       ctaTitle="Planning heating or cooling work?"
     />

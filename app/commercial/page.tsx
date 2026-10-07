@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicePage from "../components/ServicePage";
+import { commonFaqs } from "../faqs";
 import { pageMetadata } from "../seo";
 
 const page = {
@@ -33,6 +34,19 @@ export default function CommercialPage() {
         { title: "Licensed & Insured", text: "A licensed Utah B100 general contractor with general liability coverage." },
         { title: "One Point of Contact", text: "We schedule the trades and keep the job moving, so you can focus on your business." },
         { title: "Minimal Disruption", text: "Work planned around your business hours and operations when needed." },
+      ]}
+      faqs={[
+        {
+          question: "Do you build out tenant improvements and offices?",
+          answer: "Yes. We handle tenant improvements, office build-outs, and commercial remodels, including wood and metal framing, drywall, paint, tile, doors, and trim, and we coordinate the plumbing, electrical, and HVAC trades.",
+        },
+        {
+          question: "Can work be scheduled around our business hours?",
+          answer: "When needed, we plan the work around your business hours and operations to keep disruption to a minimum.",
+        },
+        commonFaqs.licensed,
+        commonFaqs.estimate,
+        commonFaqs.area,
       ]}
       ctaTitle="Planning a commercial project?"
     />

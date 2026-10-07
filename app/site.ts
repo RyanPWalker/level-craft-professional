@@ -8,6 +8,19 @@ export const site = {
   city: "Orem",
   state: "Utah",
   serviceArea: "Utah County",
+  // Cities within the service area, listed on the home page and in structured data.
+  serviceCities: [
+    "Orem",
+    "Provo",
+    "Lindon",
+    "Vineyard",
+    "Pleasant Grove",
+    "American Fork",
+    "Lehi",
+    "Saratoga Springs",
+    "Springville",
+    "Spanish Fork",
+  ],
   license: {
     type: "Utah B100 General Contractor",
     // TODO: add the license number once provided. Shown in the footer when set.
@@ -24,6 +37,8 @@ export const site = {
 // Service landing pages, used for the nav, footer, and home page links.
 export const servicePages = [
   { href: "/home-renovation", navLabel: "Renovation", title: "Home Renovation" },
-  { href: "/hvac", navLabel: "HVAC", title: "Heating & Cooling" },
+  { href: "/basement-finishing", navLabel: "Basements", title: "Basement Finishing" },
+  { href: "/concrete", navLabel: "Concrete", title: "Concrete" },
   { href: "/commercial", navLabel: "Commercial", title: "Commercial Construction" },
+  { href: "/hvac", navLabel: "HVAC", title: "Heating & Cooling" },
 ];

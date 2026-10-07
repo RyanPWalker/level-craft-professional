@@ -35,7 +35,7 @@ const services: { icon: IconName; title: string; text: string; href?: string }[]
   {
     icon: "home",
     title: "Remodels & Additions",
-    text: "Home remodels, additions, repairs, and improvements, built to last.",
+    text: "Home remodels, additions, basement finishing, repairs, and improvements, built to last.",
     href: "/home-renovation",
   },
   {
@@ -52,6 +52,7 @@ const services: { icon: IconName; title: string; text: string; href?: string }[]
     icon: "grid",
     title: "Concrete",
     text: "Driveways, patios, walkways, and pads.",
+    href: "/concrete",
   },
   {
     icon: "thermometer",
@@ -66,7 +67,7 @@ const sectors = [
     href: "/home-renovation",
     eyebrow: "Residential",
     title: "Remodels, additions, and repairs for your home",
-    text: "Kitchens, bathrooms, basements, additions, and the finish work that ties them together.",
+    text: "Kitchens, bathrooms, basement finishing, additions, and the finish work that ties them together.",
   },
   {
     href: "/commercial",
@@ -225,6 +226,27 @@ export default function Home() {
                   <h3>{v.title}</h3>
                   <p>{v.text}</p>
                 </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section id="areas" className="section">
+        <div className="container areas">
+          <div>
+            <p className="eyebrow">Service Area</p>
+            <h2>Serving {site.serviceArea}</h2>
+            <p className="section-intro">
+              Based in {site.city}, we build for homeowners and businesses throughout {site.serviceArea}{" "}
+              and surrounding areas.
+            </p>
+          </div>
+          <ul className="cities" aria-label="Cities we serve">
+            {site.serviceCities.map((city) => (
+              <li key={city}>
+                <Icon name="pin" size={16} />
+                {city}
               </li>
             ))}
           </ul>
