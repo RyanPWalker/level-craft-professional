@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ContactCTA from "./components/ContactCTA";
-import GrassStrip from "./components/GrassStrip";
-import PixelArt, { type Sprite } from "./components/PixelArt";
-import { houseScene, icons } from "./components/sprites";
+import Icon, { type IconName } from "./components/Icon";
 import { pageMetadata } from "./seo";
 import { site } from "./site";
 
@@ -20,53 +18,76 @@ export const metadata: Metadata = {
   title: { absolute: homeTitle },
 };
 
-const services: { icon: Sprite; title: string; text: string; href?: string }[] = [
+const credentials: { icon: IconName; title: string; text: string }[] = [
+  { icon: "shield", title: "Licensed", text: site.license.type },
+  { icon: "clipboard", title: "Insured", text: "General liability coverage" },
+  { icon: "building", title: "Residential & Commercial", text: "Remodels to build-outs" },
+  { icon: "pin", title: "Locally Based", text: `${site.city}, ${site.serviceArea}` },
+];
+
+const services: { icon: IconName; title: string; text: string; href?: string }[] = [
   {
-    icon: icons.building,
+    icon: "building",
     title: "Commercial Construction",
     text: "Tenant improvements, office build-outs, and commercial remodels, managed start to finish.",
     href: "/commercial",
   },
   {
-    icon: icons.hammer,
+    icon: "home",
     title: "Remodels & Additions",
     text: "Home remodels, additions, repairs, and improvements, built to last.",
     href: "/home-renovation",
   },
   {
-    icon: icons.house,
+    icon: "frame",
     title: "Framing & Carpentry",
     text: "Wood and metal framing, plus doors, trim, and custom carpentry.",
   },
   {
-    icon: icons.bricks,
+    icon: "layers",
     title: "Drywall, Paint & Tile",
     text: "Drywall hanging, finishing, and repairs; interior and exterior painting; tile floors, showers, and walls.",
   },
   {
-    icon: icons.pickaxe,
+    icon: "grid",
     title: "Concrete",
     text: "Driveways, patios, walkways, and pads.",
   },
   {
-    icon: icons.snowflake,
+    icon: "thermometer",
     title: "HVAC, Plumbing & Electrical",
     text: "Coordinated through qualified trades and managed as part of your project.",
     href: "/hvac",
   },
 ];
 
+const sectors = [
+  {
+    href: "/home-renovation",
+    eyebrow: "Residential",
+    title: "Remodels, additions, and repairs for your home",
+    text: "Kitchens, bathrooms, basements, additions, and the finish work that ties them together.",
+  },
+  {
+    href: "/commercial",
+    eyebrow: "Commercial",
+    title: "Tenant improvements and office build-outs",
+    text: "Shell space to finished space, planned around your business and its schedule.",
+  },
+];
+
 const steps = [
-  { title: "Free Estimate", text: "We visit your site, listen to your goals, and scope the work." },
-  { title: "Plan & Price", text: "A clear written proposal with timeline and pricing — no surprises." },
-  { title: "Build", text: "Our crew gets to work, with regular updates along the way." },
-  { title: "Final Walkthrough", text: "We walk the finished project with you to make sure it's right." },
+  { title: "Consultation", text: "We visit your site, listen to your goals, and scope the work." },
+  { title: "Proposal", text: "A clear written proposal with timeline and pricing." },
+  { title: "Construction", text: "Our crew builds while we manage the schedule and the trades, with regular updates." },
+  { title: "Walkthrough", text: "We walk the finished project with you to make sure it's right." },
 ];
 
 const values = [
-  { title: "Licensed & Insured", text: `${site.license.type}, fully insured with general liability coverage.` },
-  { title: "Built Level", text: "Precise, square, and plumb. We sweat the details so you don't have to." },
-  { title: "One Point of Contact", text: "Full general contracting. We coordinate every trade so you don't have to." },
+  { title: "Licensed & insured", text: `${site.license.type}, fully insured with general liability coverage.` },
+  { title: "Precise workmanship", text: "Square, level, and plumb, with attention to the details that last." },
+  { title: "One point of contact", text: "Full general contracting. We coordinate every trade so you don't have to." },
+  { title: "Clear communication", text: "A written scope, a realistic schedule, and updates along the way." },
 ];
 
 export default function Home() {
@@ -75,39 +96,70 @@ export default function Home() {
       <section className="hero">
         <div className="container hero-inner">
           <div className="hero-copy">
-            <p className="eyebrow">{site.city}, {site.state} · {site.serviceArea}</p>
-            <h1>Built level. Crafted to last.</h1>
+            <p className="eyebrow eyebrow-light">General Contractor · {site.city}, {site.state}</p>
+            <h1>Residential and commercial construction, built to last.</h1>
             <p className="lead">
-              Residential and commercial construction across {site.serviceArea}. From remodels
-              and additions to office build-outs, Level Craft builds it right — block by block.
+              Remodels, additions, and commercial build-outs across {site.serviceArea}. One
+              licensed contractor managing your project from estimate to final walkthrough.
             </p>
             <div className="hero-actions">
-              <a href="#contact" className="btn">Get a Free Estimate</a>
-              <a href="#services" className="btn btn-ghost">Our Services</a>
+              <a href="#contact" className="btn">Request a Free Estimate</a>
+              <a href="#services" className="btn btn-outline-light">View Services</a>
             </div>
-            <p className="hero-badge">
-              <PixelArt sprite={icons.check} scale={2} />
-              Licensed &amp; insured · {site.license.type}
-            </p>
           </div>
-          <PixelArt sprite={houseScene} className="hero-art" />
+          <aside className="hero-card" aria-label="Contact">
+            <p className="hero-card-title">Start your project</p>
+            <p>Call to schedule a site visit and a free, written estimate.</p>
+            <a href={site.phone.href} className="hero-card-phone">
+              <Icon name="phone" />
+              {site.phone.display}
+            </a>
+            <ul className="checklist">
+              <li><Icon name="check" size={18} />Licensed {site.license.type}</li>
+              <li><Icon name="check" size={18} />Insured with general liability coverage</li>
+              <li><Icon name="check" size={18} />Serving {site.serviceArea} and surrounding areas</li>
+            </ul>
+          </aside>
         </div>
-        <GrassStrip id="grass-hero" />
+      </section>
+
+      <section className="credentials" aria-label="Credentials">
+        <div className="container credentials-grid">
+          {credentials.map((c) => (
+            <div key={c.title} className="credential">
+              <Icon name={c.icon} size={28} />
+              <div>
+                <p className="credential-title">{c.title}</p>
+                <p className="credential-text">{c.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section id="services" className="section">
         <div className="container">
-          <p className="eyebrow">Services</p>
-          <h2>What We Build</h2>
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Services</p>
+              <h2>Full-service general contracting</h2>
+            </div>
+            <p className="section-intro">
+              Our crew handles framing, drywall, paint, tile, concrete, and carpentry in-house, and we
+              coordinate qualified trades for the rest, so your project runs on one schedule.
+            </p>
+          </div>
           <div className="grid">
             {services.map((s) => (
               <article key={s.title} className="card">
-                <PixelArt sprite={s.icon} className="card-icon" />
+                <span className="card-icon">
+                  <Icon name={s.icon} />
+                </span>
                 <h3>{s.title}</h3>
                 <p>{s.text}</p>
                 {s.href && (
                   <Link href={s.href} className="card-link">
-                    Learn more <span aria-hidden="true">→</span>
+                    Learn more <Icon name="arrow" size={16} />
                   </Link>
                 )}
               </article>
@@ -116,47 +168,66 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="process" className="section section-alt">
+      <section className="section section-alt">
+        <div className="container sectors">
+          {sectors.map((s) => (
+            <Link key={s.href} href={s.href} className="sector">
+              <p className="eyebrow">{s.eyebrow}</p>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+              <span className="card-link">
+                Explore {s.eyebrow.toLowerCase()} <Icon name="arrow" size={16} />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section id="process" className="section">
         <div className="container">
-          <p className="eyebrow">How It Works</p>
-          <h2>Your Project, Level by Level</h2>
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Our Process</p>
+              <h2>A clear path from estimate to completion</h2>
+            </div>
+          </div>
           <ol className="steps">
             {steps.map((step, i) => (
               <li key={step.title} className="step">
-                <span className="step-level">Level {i + 1}</span>
+                <span className="step-num">{String(i + 1).padStart(2, "0")}</span>
                 <h3>{step.title}</h3>
                 <p>{step.text}</p>
-                <div className="xp-bar" aria-hidden="true">
-                  {steps.map((_, j) => (
-                    <span key={j} className={j <= i ? "filled" : undefined} />
-                  ))}
-                </div>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section id="about" className="section">
-        <div className="container">
-          <p className="eyebrow">About</p>
-          <h2>Why Level Craft</h2>
-          <p className="section-intro">
-            Level Craft is owned by {site.owner} and based in {site.city}, {site.state}. We
-            handle the whole job as your general contractor, from framing and drywall to tile,
-            concrete, and finish carpentry, and we coordinate the specialty trades.
-          </p>
-          <div className="grid grid-3">
-            {values.map((v) => (
-              <div key={v.title} className="value">
-                <h3>
-                  <PixelArt sprite={icons.check} scale={3} />
-                  {v.title}
-                </h3>
-                <p>{v.text}</p>
-              </div>
-            ))}
+      <section id="about" className="section section-alt">
+        <div className="container about">
+          <div>
+            <p className="eyebrow">About</p>
+            <h2>A local contractor accountable for the whole job</h2>
+            <p>
+              Level Craft Construction is owned by {site.owner} and based in {site.city},{" "}
+              {site.state}. We work on homes and businesses across {site.serviceArea}, acting as your
+              general contractor from framing and drywall to tile, concrete, and finish carpentry, and
+              coordinating the specialty trades along the way.
+            </p>
           </div>
+          <ul className="values">
+            {values.map((v) => (
+              <li key={v.title} className="value-row">
+                <span className="value-check">
+                  <Icon name="check" size={18} />
+                </span>
+                <div>
+                  <h3>{v.title}</h3>
+                  <p>{v.text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

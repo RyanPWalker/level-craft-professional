@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import ServicePage from "../components/ServicePage";
-import { icons } from "../components/sprites";
 import { pageMetadata } from "../seo";
 
 const page = {
@@ -17,9 +16,9 @@ export default function CommercialPage() {
     <ServicePage
       page={page}
       eyebrow="Commercial Construction"
-      title="Commercial builds, done level."
+      title="Commercial build-outs, managed start to finish."
       lead="Tenant improvements, office build-outs, and remodels for businesses across Utah County — managed carefully so you can open on time."
-      icon={icons.building}
+      icon="building"
       offeringsTitle="Commercial Services"
       offerings={[
         { title: "Tenant Improvements", text: "Build-outs that turn shell space into a space ready for your business." },

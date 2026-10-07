@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import ServicePage from "../components/ServicePage";
-import { icons } from "../components/sprites";
 import { pageMetadata } from "../seo";
 
 const page = {
@@ -19,9 +18,9 @@ export default function HvacPage() {
     <ServicePage
       page={page}
       eyebrow="Heating · Cooling"
-      title="Comfort, crafted."
+      title="Heating and cooling, coordinated with your build."
       lead="Heating and cooling for your remodel, addition, or build-out. We coordinate qualified HVAC trades and manage the work as part of your project, with one schedule and one point of contact."
-      icon={icons.snowflake}
+      icon="thermometer"
       offeringsTitle="HVAC on Your Project"
       offerings={[
         { title: "Remodels & Additions", text: "New or extended heating and cooling for added and reworked spaces, planned in from the start." },

@@ -1,19 +1,29 @@
-import Link from "next/link";
+import Icon from "./Icon";
+import Logo from "./Logo";
 import NavLinks from "./NavLinks";
-import PixelArt from "./PixelArt";
-import { grassBlock } from "./sprites";
+import { site } from "../site";
 
 export default function SiteHeader() {
   return (
-    <header className="nav">
-      <div className="container nav-inner">
-        <Link href="/" className="logo">
-          <PixelArt sprite={grassBlock} scale={2} />
-          Level Craft
-        </Link>
-        <a href="#contact" className="btn btn-small nav-cta">Get a Quote</a>
-        <NavLinks />
+    <>
+      <div className="topbar">
+        <div className="container topbar-inner">
+          <p className="topbar-note">
+            Licensed {site.license.type} · Insured · Serving {site.serviceArea}
+          </p>
+          <a href={site.phone.href} className="topbar-phone">
+            <Icon name="phone" size={16} />
+            {site.phone.display}
+          </a>
+        </div>
       </div>
-    </header>
+      <header className="nav">
+        <div className="container nav-inner">
+          <Logo />
+          <NavLinks />
+          <a href="#contact" className="btn btn-small nav-cta">Request an Estimate</a>
+        </div>
+      </header>
+    </>
   );
 }

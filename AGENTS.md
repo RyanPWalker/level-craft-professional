@@ -6,6 +6,8 @@ Guidance for AI coding agents working in this repository.
 
 Marketing website for **Level Craft Construction** ("Level Craft" for short), a residential and commercial general contractor in Orem, Utah. It is a small multi-page Next.js site, statically exported and hosted on GitHub Pages.
 
+This repo is the **professional** redesign, started from a copy of `RyanPWalker/level-craft` (the pixel-art/gaming-themed version). Content, SEO, and business facts are shared; the theme and layout differ.
+
 ## Commands
 
 ```bash
@@ -26,15 +28,14 @@ There is no test suite or linter yet. `yarn build` (which type-checks) is the ve
 - `app/og.png/route.tsx`: generates the social share image (`/og.png`) at build time
 - `app/page.tsx`: the homepage. Content (services, process steps, values) lives in arrays at the top of the file.
 - `app/home-renovation/`, `app/hvac/`, `app/commercial/`: service landing pages, to be built out further for SEO and targeting. Each currently renders the shared `ServicePage` template with its own content and `metadata`. A page defines a `page` object (path with trailing slash, title, description), passes it to `pageMetadata()` and `ServicePage`, which emits `Service` and `BreadcrumbList` JSON-LD. A page can diverge from the template when it needs to.
-- `app/components/SiteHeader.tsx`, `NavLinks.tsx` (client component, highlights the current page), `SiteFooter.tsx`, `ContactCTA.tsx`: shared across pages. The header and footer are rendered in `app/layout.tsx`.
+- `app/components/SiteHeader.tsx` (top bar with license and phone, sticky header), `NavLinks.tsx` (client component, highlights the current page), `SiteFooter.tsx` (multi-column), `ContactCTA.tsx`: shared across pages. The header and footer are rendered in `app/layout.tsx`.
+- `app/components/Logo.tsx`: stand-in spirit-level mark plus the wordmark. Keep it in sync with `app/icon.svg`.
+- `app/components/Icon.tsx`: line icons (24×24, `currentColor` strokes), referenced by name
 - `app/globals.css`: all styles. Plain CSS, with design tokens as custom properties on `:root`.
-- `app/components/PixelArt.tsx`: renders a pixel-art `Sprite` (rows of characters plus a palette) as a crisp SVG
-- `app/components/sprites.ts`: all pixel art (grass block, hero construction scene, service icons)
-- `app/components/GrassStrip.tsx`: full-width repeating grass-block divider
-- `app/icon.svg`: favicon (the grass block)
-- `public/`: static assets, copied as-is into `out/`. Includes `CNAME` (custom domain `levelcraft.co`).
-- `next.config.ts`: static export config
-- `.github/workflows/deploy.yml`: builds and deploys to GitHub Pages on push to `master`
+- `app/icon.svg`: favicon (the spirit-level mark)
+- `public/`: static assets, copied as-is into `out/`
+- `next.config.ts`: static export config. `basePath` comes from `PAGES_BASE_PATH`.
+- `.github/workflows/deploy.yml`: builds and deploys to GitHub Pages on push to `main`
 
 ## Hard constraints: static export on GitHub Pages
 
@@ -49,9 +50,9 @@ Forms must post to a third-party service (e.g. Formspree) or use `mailto:`.
 
 ### Domain
 
-The site is served from the root of the custom domain `levelcraft.co` (set by `public/CNAME`), so there is no `basePath`. Root-relative URLs (`/hvac/`, `url(/...)`) work as-is.
+There is no custom domain yet (no `public/CNAME`; `levelcraft.co` is still served by the original repo), so GitHub Pages serves this site at `https://ryanpwalker.github.io/level-craft-professional/`. The deploy workflow passes that path prefix to `next.config.ts` as `PAGES_BASE_PATH`; it becomes empty once a custom domain is set. `site.url` (canonical URLs, sitemap, JSON-LD) stays `https://levelcraft.co`, the intended final domain.
 
-- Use `next/link` for internal page links.
+- Use `next/link` for internal page links so they get the `basePath`. Don't hard-code root-relative URLs in plain `<a>` tags, CSS `url(/...)`, or `<img src>`.
 - Hash links (`#services`) are fine. `#contact` works on every page because each page renders `ContactCTA`.
 
 ### SEO
@@ -62,19 +63,19 @@ The site is served from the root of the custom domain `levelcraft.co` (set by `p
 
 ## Design theme
 
-The owner named the company with his gamer kids in mind (think Minecraft), so the site has a **light** pixel-art/gaming flavor. It is still a professional site whose job is to win construction, renovation, and HVAC customers. Keep the gaming touches as accents, never at the expense of clarity or credibility.
+A clean, **professional** contractor site whose job is to win construction, renovation, and commercial customers. Credibility and clarity come first; no gaming or pixel-art elements (those belong to the original `level-craft` repo).
 
-- Fonts: **Jersey 10** (`--font-display`) for h1/h2 and buttons; **Silkscreen** (`--font-label`) for the logo, eyebrows, and small uppercase badges; **Inter** (`--font-sans`) for everything else, including h3 and body copy. Don't put long text in pixel fonts. Silkscreen renders `&` poorly, so avoid it in eyebrows.
-- Avoid Pixelify Sans and similar fonts. Its "C" reads as "O" and its "5" as "S".
-- New pixel art goes in `sprites.ts` and renders with `<PixelArt>`. Don't use raster images. Keep icons around 12×12.
-- Gaming nods in use: hero scene (tower crane lowering a plank block, hard-hat worker on the roof of a pixel house), grass-block logo and dividers, beveled "menu" buttons, hard-offset card shadows, "Level N" process steps with XP bars. Add new ones sparingly.
-- Colors: dark navy (`--dark`), grass green (`--grass`, used for primary actions), gold (`--gold`) as a small highlight.
+- Fonts: **Archivo** (`--font-heading`, weights 600–800) for headings, the wordmark, and large numerals; **Inter** (`--font-sans`) for everything else.
+- Colors: dark navy (`--navy`, `--ink`) for the hero, panels, CTA, and footer; warm stone (`--surface`) for alternating sections; copper (`--accent`) for primary buttons, eyebrows, and icons, with `--accent-light` on dark backgrounds. Keep text contrast at WCAG AA.
+- Layout patterns: top bar with license and phone, sticky white header, navy hero with a faint blueprint grid and a white contact card, a credentials strip, two-column section heads (heading left, intro right), bordered cards with soft shadows on hover, numbered process steps (01–04), and a split About section.
+- Icons: add new ones to `Icon.tsx` as simple 24×24 stroked paths. No raster images until real project photos are provided.
+- Eyebrows are small uppercase labels with a short rule before them (`.eyebrow`, `.eyebrow-light` on dark).
 
 ## Conventions
 
 - TypeScript, App Router, React Server Components by default. Add `"use client"` only when interactivity requires it.
-- Styling: plain CSS in `globals.css`. Reuse the existing tokens (`--grass`, `--dark`, etc.) and classes (`.container`, `.section`, `.card`, `.btn`, `.eyebrow`). Don't add Tailwind or a CSS-in-JS library unless asked.
-- Keep it mobile-friendly. The existing breakpoints are `max-width: 800px` (hero stacks) and `600px` (nav links hide, single-column grid).
+- Styling: plain CSS in `globals.css`. Reuse the existing tokens (`--navy`, `--accent`, `--surface`, etc.) and classes (`.container`, `.section`, `.section-head`, `.card`, `.btn`, `.eyebrow`, `.checklist`). Don't add Tailwind or a CSS-in-JS library unless asked.
+- Keep it mobile-friendly. The existing breakpoints are `max-width: 960px` (two-column grids, header CTA hides), `800px` (hero and split sections stack), and `600px` (nav links hide, single-column grid).
 - Keep dependencies minimal.
 
 ## Yarn notes
@@ -102,5 +103,5 @@ These are still placeholders, not real business info. Don't present them as real
 
 - Email `info@levelcraft.com` in `app/site.ts`
 - License number (`site.license.number`, empty, so it's hidden until set)
-- Logo: the owner has an existing logo to provide. The grass-block logo is a stand-in.
+- Logo: the owner has an existing logo to provide. The spirit-level mark is a stand-in.
 - Process steps and some value copy are generic

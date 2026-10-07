@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import ServicePage from "../components/ServicePage";
-import { icons } from "../components/sprites";
 import { pageMetadata } from "../seo";
 
 const page = {
@@ -17,9 +16,9 @@ export default function HomeRenovationPage() {
     <ServicePage
       page={page}
       eyebrow="Home Renovation"
-      title="Level up your home."
+      title="Home remodels and additions, built right."
       lead="Remodels, additions, repairs, and improvements across Utah County — planned carefully and built to last, so you can love the home you already have."
-      icon={icons.hammer}
+      icon="home"
       offeringsTitle="Renovations We Build"
       offerings={[
         { title: "Remodels", text: "Kitchens, bathrooms, basements, and whole rooms, managed as one project with one team." },

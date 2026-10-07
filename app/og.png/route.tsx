@@ -1,5 +1,4 @@
 import { ImageResponse } from "next/og";
-import { grassBlock } from "../components/sprites";
 import { site } from "../site";
 
 // Social share image (Facebook, iMessage, LinkedIn, X), written to out/og.png at build time.
@@ -9,23 +8,13 @@ export const dynamic = "force-static";
 
 const size = { width: 1200, height: 630 };
 
-const PIXEL = 12;
-
-/** The grass-block sprite as absolutely positioned divs (Satori has no SVG rect support for this). */
-function GrassBlock() {
-  const { art, palette } = grassBlock;
+/** The spirit-level logo mark, drawn with divs (Satori's SVG support is limited). */
+function Mark() {
   return (
-    <div style={{ display: "flex", position: "relative", width: art[0].length * PIXEL, height: art.length * PIXEL }}>
-      {art.flatMap((row, y) =>
-        [...row].map((ch, x) =>
-          palette[ch] ? (
-            <div
-              key={`${x},${y}`}
-              style={{ position: "absolute", left: x * PIXEL, top: y * PIXEL, width: PIXEL, height: PIXEL, background: palette[ch] }}
-            />
-          ) : null,
-        ),
-      )}
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 128, height: 128, borderRadius: 24, background: "#1c3150" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 92, height: 34, borderRadius: 17, border: "6px solid #ffffff" }}>
+        <div style={{ width: 18, height: 18, borderRadius: 9, background: "#e0913f" }} />
+      </div>
     </div>
   );
 }
@@ -40,24 +29,24 @@ export function GET() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#1a212b",
+          background: "#13233a",
           color: "#ffffff",
-          padding: 72,
-          borderBottom: "24px solid #3f7a26",
+          padding: 80,
+          borderTop: "16px solid #b85c1c",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 40 }}>
-          <GrassBlock />
+          <Mark />
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 72 }}>{site.name}</div>
-            <div style={{ fontSize: 36, color: "#8fd05f" }}>
+            <div style={{ fontSize: 72, fontWeight: 700 }}>{site.name}</div>
+            <div style={{ fontSize: 34, color: "#b9c3d1" }}>
               {`General Contractor · ${site.city}, ${site.state}`}
             </div>
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 16, fontSize: 36 }}>
           <div>Remodels · Additions · Commercial Tenant Improvements</div>
-          <div style={{ color: "#f0b43c" }}>
+          <div style={{ color: "#e0913f" }}>
             {`Licensed & insured · Serving ${site.serviceArea}`}
           </div>
         </div>

@@ -1,17 +1,33 @@
+import Icon from "./Icon";
 import { site } from "../site";
 
-export default function ContactCTA({ title = "Ready to start your next build?" }: { title?: string }) {
+export default function ContactCTA({ title = "Let's talk about your project." }: { title?: string }) {
   return (
     <section id="contact" className="section cta">
-      <div className="container">
-        <p className="eyebrow">Contact</p>
-        <h2>{title}</h2>
-        <p className="section-intro">
-          Tell us what you have in mind and we&apos;ll get back to you with a free estimate.
-        </p>
-        <div className="contact-info">
-          <a href={site.phone.href} className="btn">{site.phone.display}</a>
-          <a href={`mailto:${site.email}`} className="btn btn-ghost">{site.email}</a>
+      <div className="container cta-inner">
+        <div>
+          <p className="eyebrow eyebrow-light">Free Estimates</p>
+          <h2>{title}</h2>
+          <p className="cta-text">
+            Tell us about the scope, location, and timing. We&apos;ll follow up to schedule a site
+            visit and prepare a written estimate.
+          </p>
+        </div>
+        <div className="cta-actions">
+          <a href={site.phone.href} className="cta-item">
+            <Icon name="phone" />
+            <span>
+              <span className="cta-label">Call</span>
+              {site.phone.display}
+            </span>
+          </a>
+          <a href={`mailto:${site.email}`} className="cta-item">
+            <Icon name="mail" />
+            <span>
+              <span className="cta-label">Email</span>
+              {site.email}
+            </span>
+          </a>
         </div>
       </div>
     </section>

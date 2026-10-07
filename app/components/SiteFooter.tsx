@@ -1,7 +1,5 @@
 import Link from "next/link";
-import GrassStrip from "./GrassStrip";
-import PixelArt from "./PixelArt";
-import { grassBlock } from "./sprites";
+import Logo from "./Logo";
 import { servicePages, site } from "../site";
 
 export default function SiteFooter() {
@@ -9,28 +7,36 @@ export default function SiteFooter() {
 
   return (
     <footer className="footer">
-      <GrassStrip id="grass-footer" />
-      <div className="container footer-inner">
-        <Link href="/" className="logo">
-          <PixelArt sprite={grassBlock} scale={2} />
-          Level Craft
-        </Link>
-        <nav className="footer-links" aria-label="Footer">
+      <div className="container footer-grid">
+        <div className="footer-brand">
+          <Logo inverse />
+          <p>
+            Residential and commercial general contractor based in {site.city}, {site.state},
+            serving {site.serviceArea} and surrounding areas.
+          </p>
+        </div>
+        <nav className="footer-col" aria-label="Services">
+          <h2 className="footer-heading">Services</h2>
           {servicePages.map((page) => (
             <Link key={page.href} href={page.href}>{page.title}</Link>
           ))}
-          <a href={site.phone.href}>{site.phone.display}</a>
         </nav>
+        <div className="footer-col">
+          <h2 className="footer-heading">Contact</h2>
+          <a href={site.phone.href}>{site.phone.display}</a>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+          <span>{site.city}, {site.state}</span>
+        </div>
+        <div className="footer-col">
+          <h2 className="footer-heading">Credentials</h2>
+          <span>{site.license.type}</span>
+          {site.license.number && <span>License #{site.license.number}</span>}
+          <span>Insured, with general liability coverage</span>
+        </div>
       </div>
       <div className="container footer-legal">
-        <p>
-          {site.name} · {site.city}, {site.state} · Serving {site.serviceArea} and surrounding areas
-        </p>
-        <p>
-          Licensed &amp; insured {site.license.type}
-          {site.license.number && <> · License #{site.license.number}</>}
-        </p>
         <p>&copy; {year} {site.legalName}. All rights reserved.</p>
+        <p>{site.name}</p>
       </div>
     </footer>
   );

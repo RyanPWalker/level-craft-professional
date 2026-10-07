@@ -395,9 +395,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"level-craft@workspace:.":
+"level-craft-professional@workspace:.":
   version: 0.0.0-use.local
-  resolution: "level-craft@workspace:."
+  resolution: "level-craft-professional@workspace:."
   dependencies:
     "@types/node": "npm:^26.6.4"
     "@types/react": "npm:^19.3.0"

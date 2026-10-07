@@ -1,7 +1,6 @@
+import Link from "next/link";
 import ContactCTA from "./ContactCTA";
-import GrassStrip from "./GrassStrip";
-import PixelArt, { type Sprite } from "./PixelArt";
-import { icons } from "./sprites";
+import Icon, { type IconName } from "./Icon";
 import { businessId, JsonLd } from "../seo";
 import { site } from "../site";
 
@@ -11,8 +10,9 @@ export type ServicePageProps = {
   eyebrow: string;
   title: string;
   lead: string;
-  icon: Sprite;
+  icon: IconName;
   offeringsTitle: string;
+  offeringsIntro?: string;
   offerings: { title: string; text: string }[];
   highlightsTitle: string;
   highlights: { title: string; text: string }[];
@@ -45,28 +45,51 @@ export default function ServicePage(props: ServicePageProps) {
     <main>
       <JsonLd data={serviceJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
-      <section className="hero page-hero">
-        <div className="container hero-inner">
-          <div className="hero-copy">
-            <p className="eyebrow">{props.eyebrow}</p>
+      <section className="page-hero">
+        <div className="container page-hero-inner">
+          <div>
+            <nav className="breadcrumb" aria-label="Breadcrumb">
+              <Link href="/">Home</Link>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">{props.eyebrow}</span>
+            </nav>
             <h1>{props.title}</h1>
             <p className="lead">{props.lead}</p>
             <div className="hero-actions">
-              <a href="#contact" className="btn">Get a Free Estimate</a>
+              <a href="#contact" className="btn">Request an Estimate</a>
+              <a href={site.phone.href} className="btn btn-outline-light">Call {site.phone.display}</a>
             </div>
           </div>
-          <PixelArt sprite={props.icon} className="page-hero-art" />
+          <aside className="glance" aria-label="At a glance">
+            <span className="glance-icon">
+              <Icon name={props.icon} size={28} />
+            </span>
+            <p className="glance-title">At a glance</p>
+            <ul className="checklist">
+              {props.offerings.map((o) => (
+                <li key={o.title}>
+                  <Icon name="check" size={18} />
+                  {o.title}
+                </li>
+              ))}
+            </ul>
+          </aside>
         </div>
-        <GrassStrip id="grass-hero" />
       </section>
 
       <section className="section">
         <div className="container">
-          <p className="eyebrow">What We Do</p>
-          <h2>{props.offeringsTitle}</h2>
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Scope of Work</p>
+              <h2>{props.offeringsTitle}</h2>
+            </div>
+            {props.offeringsIntro && <p className="section-intro">{props.offeringsIntro}</p>}
+          </div>
           <div className="grid">
-            {props.offerings.map((o) => (
+            {props.offerings.map((o, i) => (
               <article key={o.title} className="card">
+                <span className="card-num">{String(i + 1).padStart(2, "0")}</span>
                 <h3>{o.title}</h3>
                 <p>{o.text}</p>
               </article>
@@ -77,15 +100,19 @@ export default function ServicePage(props: ServicePageProps) {
 
       <section className="section section-alt">
         <div className="container">
-          <p className="eyebrow">Why Level Craft</p>
-          <h2>{props.highlightsTitle}</h2>
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Why Level Craft</p>
+              <h2>{props.highlightsTitle}</h2>
+            </div>
+          </div>
           <div className="grid grid-3">
             {props.highlights.map((h) => (
               <div key={h.title} className="value">
-                <h3>
-                  <PixelArt sprite={icons.check} scale={3} />
-                  {h.title}
-                </h3>
+                <span className="value-icon">
+                  <Icon name="shield" />
+                </span>
+                <h3>{h.title}</h3>
                 <p>{h.text}</p>
               </div>
             ))}
