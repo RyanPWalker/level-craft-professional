@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     path: "/",
     title: homeTitle,
     description:
-      "Licensed and insured general contractor in Orem, Utah. Home remodels, additions, and commercial tenant improvements across Utah County. Call for a free estimate.",
+      "Licensed and insured general contractor in Orem, Utah. Home remodels, additions, and commercial tenant improvements across Utah. Call for a free estimate.",
   }),
   // Already includes the brand, so skip the "%s | Level Craft Construction" template.
   title: { absolute: homeTitle },
@@ -22,7 +22,7 @@ const credentials: { icon: IconName; title: string; text: string }[] = [
   { icon: "shield", title: "Licensed", text: site.license.type },
   { icon: "clipboard", title: "Insured", text: "General liability coverage" },
   { icon: "building", title: "Residential & Commercial", text: "Remodels to build-outs" },
-  { icon: "pin", title: "Locally Based", text: `${site.city}, ${site.serviceArea}` },
+  { icon: "pin", title: "Statewide Service", text: `Based in ${site.city}, serving all of ${site.serviceArea}` },
 ];
 
 const services: { icon: IconName; title: string; text: string; href?: string }[] = [
@@ -118,7 +118,7 @@ export default function Home() {
             <ul className="checklist">
               <li><Icon name="check" size={18} />Licensed {site.license.type}</li>
               <li><Icon name="check" size={18} />Insured with general liability coverage</li>
-              <li><Icon name="check" size={18} />Serving {site.serviceArea} and surrounding areas</li>
+              <li><Icon name="check" size={18} />Serving all of {site.serviceArea} from {site.city}</li>
             </ul>
           </aside>
         </div>
@@ -236,10 +236,11 @@ export default function Home() {
         <div className="container areas">
           <div>
             <p className="eyebrow">Service Area</p>
-            <h2>Serving {site.serviceArea}</h2>
+            <h2>Serving all of {site.serviceArea}</h2>
             <p className="section-intro">
-              Based in {site.city}, we build for homeowners and businesses throughout {site.serviceArea}{" "}
-              and surrounding areas.
+              Based in {site.city}, we build for homeowners and businesses across the state. Have a
+              project outside {site.serviceArea}? <Link href="/contact">Get in touch</Link>. We consider
+              out-of-state work case by case.
             </p>
           </div>
           <ul className="cities" aria-label="Cities we serve">

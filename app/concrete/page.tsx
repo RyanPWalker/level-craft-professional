@@ -5,9 +5,9 @@ import { pageMetadata } from "../seo";
 
 const page = {
   path: "/concrete/",
-  title: "Concrete Driveways & Patios in Utah County",
+  title: "Concrete Driveways & Patios in Utah",
   description:
-    "Concrete driveways, patios, walkways, and pads in Orem and across Utah County from a licensed, insured Utah B100 general contractor. Free estimates.",
+    "Concrete driveways, patios, walkways, and pads in Orem and across Utah from a licensed, insured Utah B100 general contractor. Free estimates.",
 };
 
 export const metadata: Metadata = pageMetadata(page);
@@ -18,7 +18,7 @@ export default function ConcretePage() {
       page={page}
       eyebrow="Concrete"
       title="Concrete driveways, patios, and walkways."
-      lead="Concrete flatwork across Utah County, formed, poured, and finished by our own crew, on its own or as part of a larger remodel or addition."
+      lead="Concrete flatwork across Utah, formed, poured, and finished by our own crew, on its own or as part of a larger remodel or addition."
       icon="grid"
       offeringsTitle="Concrete Services"
       offerings={[

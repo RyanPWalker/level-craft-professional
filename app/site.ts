@@ -7,19 +7,23 @@ export const site = {
   owner: "Joaquin Harris",
   city: "Orem",
   state: "Utah",
-  serviceArea: "Utah County",
-  // Cities within the service area, listed on the home page and in structured data.
+  // Statewide. Out-of-state projects are considered case by case, so word that as an invitation
+  // to ask, never a promise.
+  serviceArea: "Utah",
+  // Example cities across the state, listed on the home page and in structured data.
   serviceCities: [
     "Orem",
     "Provo",
-    "Lindon",
-    "Vineyard",
-    "Pleasant Grove",
-    "American Fork",
     "Lehi",
-    "Saratoga Springs",
-    "Springville",
-    "Spanish Fork",
+    "Salt Lake City",
+    "Sandy",
+    "Draper",
+    "Park City",
+    "Heber City",
+    "Ogden",
+    "Logan",
+    "St. George",
+    "Cedar City",
   ],
   license: {
     type: "Utah B100 General Contractor",
@@ -30,10 +34,9 @@ export const site = {
     display: "(575) 749-2589",
     href: "tel:+15757492589",
   },
-  // Formspree form that receives contact-page submissions (forwards to the account's email).
+  // Formspree form that receives contact-page submissions and forwards them to the owner's inbox.
+  // There is deliberately no email address on the site, to keep it away from spam bots.
   formEndpoint: "https://formspree.io/f/xqpeqboo",
-  // TODO: placeholder — replace with the real business email.
-  email: "info@levelcraft.com",
 };
 
 // Service landing pages, used for the nav, footer, and home page links.

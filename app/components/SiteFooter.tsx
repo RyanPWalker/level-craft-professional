@@ -12,7 +12,7 @@ export default function SiteFooter() {
           <Logo inverse />
           <p>
             Residential and commercial general contractor based in {site.city}, {site.state},
-            serving {site.serviceArea} and surrounding areas.
+            serving all of {site.serviceArea}.
           </p>
         </div>
         <nav className="footer-col" aria-label="Services">
@@ -25,7 +25,6 @@ export default function SiteFooter() {
           <h2 className="footer-heading">Contact</h2>
           <Link href="/contact">Request an estimate</Link>
           <a href={site.phone.href}>{site.phone.display}</a>
-          <a href={`mailto:${site.email}`}>{site.email}</a>
           <span>{site.city}, {site.state}</span>
         </div>
         <div className="footer-col">

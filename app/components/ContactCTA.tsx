@@ -15,7 +15,6 @@ export default function ContactCTA({ title = "Let's talk about your project." }:
           </p>
         </div>
         <div className="cta-actions">
-          <Link href="/contact" className="btn">Request an Estimate Online</Link>
           <a href={site.phone.href} className="cta-item">
             <Icon name="phone" />
             <span>
@@ -23,13 +22,13 @@ export default function ContactCTA({ title = "Let's talk about your project." }:
               {site.phone.display}
             </span>
           </a>
-          <a href={`mailto:${site.email}`} className="cta-item">
+          <Link href="/contact" className="cta-item">
             <Icon name="mail" />
             <span>
-              <span className="cta-label">Email</span>
-              {site.email}
+              <span className="cta-label">Message</span>
+              Request an estimate online
             </span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

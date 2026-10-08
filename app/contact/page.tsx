@@ -7,9 +7,9 @@ import { site } from "../site";
 
 const page = {
   path: "/contact/",
-  title: "Request a Free Estimate in Utah County",
+  title: "Request a Free Estimate in Utah",
   description:
-    "Contact Level Craft Construction in Orem, Utah. Request a free estimate for a remodel, addition, concrete, or commercial build-out in Utah County.",
+    "Contact Level Craft Construction in Orem, Utah. Request a free estimate for a remodel, addition, concrete, or commercial build-out anywhere in Utah.",
 };
 
 export const metadata: Metadata = pageMetadata(page);
@@ -64,7 +64,7 @@ export default function ContactPage() {
               </a>
               <p className="contact-detail">
                 <Icon name="pin" size={18} />
-                {site.city}, {site.state} · Serving {site.serviceArea} and surrounding areas
+                {site.city}, {site.state} · Serving all of {site.serviceArea}
               </p>
             </div>
             <div className="contact-block">

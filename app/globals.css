@@ -743,6 +743,7 @@ a:focus-visible,
   align-items: start;
 }
 
+.areas .section-intro a,
 .faq-layout .section-intro a {
   color: var(--accent);
   font-weight: 600;

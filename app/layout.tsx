@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description:
-    "Licensed and insured general contractor in Orem, Utah. Home remodels, additions, and commercial tenant improvements across Utah County. Call for a free estimate.",
+    "Licensed and insured general contractor in Orem, Utah. Home remodels, additions, and commercial tenant improvements across Utah. Call for a free estimate.",
   applicationName: site.name,
   formatDetection: { telephone: true },
   robots: { index: true, follow: true },
 };
 
 // Structured data so search engines can show the business in local results.
-// Pages reference this node by `businessId`. Leave out placeholder details (email, license number).
+// Pages reference this node by `businessId`. Leave out placeholder details (an empty license number).
 const businessJsonLd = {
   "@context": "https://schema.org",
   "@type": "GeneralContractor",

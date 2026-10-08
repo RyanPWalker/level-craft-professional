@@ -21,7 +21,7 @@ There is no test suite or linter yet. `yarn build` (which type-checks) is the ve
 
 ## Layout
 
-- `app/site.ts`: business facts (legal name, owner, location, service area and `serviceCities`, license, phone, email) and the `servicePages` list that drives the nav, footer, sitemap, and "Other services" links
+- `app/site.ts`: business facts (legal name, owner, location, service area and `serviceCities`, license, phone, Formspree endpoint) and the `servicePages` list that drives the nav, footer, sitemap, and "Other services" links
 - `app/faqs.ts`: FAQ answers shared across service pages (licensing, estimates, service area)
 - `app/layout.tsx`: root layout, default metadata (`metadataBase`, title template), and the business JSON-LD
 - `app/seo.tsx`: SEO helpers. `pageMetadata()` builds each page's title, description, canonical URL, and Open Graph/Twitter tags. `JsonLd` renders structured data.
@@ -60,8 +60,8 @@ There is no custom domain yet (no `public/CNAME`; `levelcraft.co` is still serve
 ### SEO
 
 - Every page exports `metadata` built with `pageMetadata()`, so it gets a canonical URL and share tags. New pages also go in `servicePages` (nav, footer, sitemap) when they are service pages.
-- Titles name the service and location ("... in Utah County"). Descriptions stay under about 155 characters.
-- Keep structured data truthful. Leave placeholder details (the email, an empty license number) out of JSON-LD.
+- Titles name the service and location ("... in Utah"). Descriptions stay under about 155 characters.
+- Keep structured data truthful. Leave placeholder details (an empty license number) out of JSON-LD, and keep out-of-state work out of `areaServed`.
 
 ## Design theme
 
@@ -91,7 +91,7 @@ A clean, **professional** contractor site whose job is to win construction, reno
 
 These come from the owner. Keep the site's claims consistent with them.
 
-- Owner Joaquin Harris. Based in Orem, Utah, serving Utah County and surrounding areas.
+- Owner Joaquin Harris. Based in Orem, Utah, serving all of Utah. Out-of-state projects are considered case by case: invite people to ask, don't promise.
 - Licensed Utah B100 General Contractor, insured, with general liability coverage.
 - Legal entity for the footer copyright: J & M Harris Enterprises, LLC. Branding is "Level Craft Construction".
 - In-house work: residential remodels, additions, repairs, and improvements; commercial tenant improvements, office build-outs, and remodels; wood and metal framing; drywall; interior and exterior painting; tile; concrete (driveways, patios, walkways, pads); carpentry; full project management.
@@ -101,9 +101,10 @@ These come from the owner. Keep the site's claims consistent with them.
 
 Business details live in `app/site.ts`. The phone number is real. Don't treat it as a secret, since it's meant to be shown on the page.
 
+Don't publish an email address anywhere on the site (including `mailto:` links), to keep it away from spam bots. Email-style contact goes through the contact page form.
+
 These are still placeholders, not real business info. Don't present them as real:
 
-- Email `info@levelcraft.com` in `app/site.ts`
 - License number (`site.license.number`, empty, so it's hidden until set)
 - Logo: the owner has an existing logo to provide. The spirit-level mark is a stand-in.
 - Process steps and some value copy are generic

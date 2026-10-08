@@ -10,7 +10,7 @@ export default function SiteHeader() {
       <div className="topbar">
         <div className="container topbar-inner">
           <p className="topbar-note">
-            Licensed {site.license.type} · Insured · Serving {site.serviceArea}
+            Licensed {site.license.type} · Insured · Serving all of {site.serviceArea}
           </p>
           <a href={site.phone.href} className="topbar-phone">
             <Icon name="phone" size={16} />
