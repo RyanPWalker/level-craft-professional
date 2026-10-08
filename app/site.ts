@@ -2,7 +2,7 @@
 export const site = {
   name: "Level Craft Construction",
   // Canonical origin, used for absolute URLs in metadata, the sitemap, and structured data.
-  url: "https://levelcraft.co",
+  url: "https://levelcraftconstruction.com",
   legalName: "J & M Harris Enterprises, LLC",
   owner: "Joaquin Harris",
   city: "Orem",

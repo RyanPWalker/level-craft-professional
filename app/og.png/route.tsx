@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import MarkImage from "../components/MarkImage";
 import { site } from "../site";
 
 // Social share image (Facebook, iMessage, LinkedIn, X), written to out/og.png at build time.
@@ -7,17 +8,6 @@ import { site } from "../site";
 export const dynamic = "force-static";
 
 const size = { width: 1200, height: 630 };
-
-/** The spirit-level logo mark, drawn with divs (Satori's SVG support is limited). */
-function Mark() {
-  return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 128, height: 128, borderRadius: 24, background: "#1c3150" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 92, height: 34, borderRadius: 17, border: "6px solid #ffffff" }}>
-        <div style={{ width: 18, height: 18, borderRadius: 9, background: "#e0913f" }} />
-      </div>
-    </div>
-  );
-}
 
 export function GET() {
   return new ImageResponse(
@@ -36,7 +26,7 @@ export function GET() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 40 }}>
-          <Mark />
+          <MarkImage size={128} background="#1c3150" />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 72, fontWeight: 700 }}>{site.name}</div>
             <div style={{ fontSize: 34, color: "#b9c3d1" }}>
@@ -49,6 +39,7 @@ export function GET() {
           <div style={{ color: "#e0913f" }}>
             {`Licensed & insured · Serving all of ${site.serviceArea}`}
           </div>
+          <div style={{ marginTop: 16, fontSize: 28, color: "#b9c3d1" }}>{new URL(site.url).host}</div>
         </div>
       </div>
     ),

@@ -6,6 +6,7 @@ export const ogImage = {
   url: "/og.png",
   width: 1200,
   height: 630,
+  type: "image/png",
   alt: `${site.name}, general contractor in ${site.city}, ${site.state}`,
 };
 

@@ -1,22 +1,7 @@
-# Level Craft Construction (professional site)
-
-Marketing site for Level Craft Construction, built with Next.js (static export) and hosted on GitHub Pages. This is the professional redesign of [RyanPWalker/level-craft](https://github.com/RyanPWalker/level-craft), which keeps the pixel-art theme.
-
-## Development
-
-```bash
-corepack enable  # once, provides the pinned Yarn version
-yarn install
-yarn dev         # http://localhost:3000
-yarn build       # static output in ./out
-```
-
 ## Deployment
 
-Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages.
+Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and publishes it to GitHub Pages (**Settings → Pages → Source: GitHub Actions**).
 
-One-time setup: in the repo on GitHub, go to **Settings → Pages** and set **Source** to **GitHub Actions**.
+The site is served at https://levelcraftconstruction.com, set under **Settings → Pages → Custom domain**. `site.url` in `app/site.ts` must match that domain: canonical URLs, share previews, and the sitemap are built from it. Keep **Enforce HTTPS** on, since the share image URL is `https://`.
 
-Until a custom domain is set, the site is served at https://ryanpwalker.github.io/level-craft-professional/. The workflow passes the Pages path prefix to the build as `PAGES_BASE_PATH`.
-
-To move it to `levelcraft.co`, remove the custom domain from the original repo's Pages settings, add a `public/CNAME` containing `levelcraft.co` here, and set the same domain under **Settings → Pages → Custom domain**.
+After changing share tags or the share image, use the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) to refresh Facebook's cached preview. Other apps refresh on their own over time.

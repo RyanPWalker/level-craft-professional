@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo, Inter } from "next/font/google";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
@@ -20,7 +20,18 @@ export const metadata: Metadata = {
   applicationName: site.name,
   formatDetection: { telephone: true },
   robots: { index: true, follow: true },
+  // Listing icons here replaces the automatic app/icon.svg link, so name every icon.
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
 };
+
+// Colors the mobile browser bar (and some link previews) navy to match the header.
+export const viewport: Viewport = { themeColor: "#13233a" };
 
 // Structured data so search engines can show the business in local results.
 // Pages reference this node by `businessId`. Leave out placeholder details (an empty license number).
