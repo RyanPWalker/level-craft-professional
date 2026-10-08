@@ -7,9 +7,9 @@ import { site } from "../site";
 
 const page = {
   path: "/contact/",
-  title: "Request a Free Estimate in Utah",
+  title: "Request a Free Estimate in Utah County",
   description:
-    "Contact Level Craft Construction in Orem, Utah. Request a free estimate for a remodel, addition, concrete, or commercial build-out anywhere in Utah.",
+    "Contact Level Craft Construction in Orem, Utah. Free estimates for remodels, additions, and commercial build-outs in Utah County and across Utah.",
 };
 
 export const metadata: Metadata = pageMetadata(page);

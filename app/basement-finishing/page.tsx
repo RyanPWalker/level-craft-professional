@@ -5,9 +5,9 @@ import { pageMetadata } from "../seo";
 
 const page = {
   path: "/basement-finishing/",
-  title: "Basement Finishing in Utah",
+  title: "Basement Finishing in Utah County",
   description:
-    "Basement finishing and remodels in Orem and across Utah. Framing, drywall, paint, tile, and trim from a licensed, insured general contractor.",
+    "Basement finishing in Orem, Utah County, and across Utah. Framing, drywall, paint, tile, and trim from a licensed, insured general contractor.",
 };
 
 export const metadata: Metadata = pageMetadata(page);

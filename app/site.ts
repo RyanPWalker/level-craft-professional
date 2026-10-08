@@ -10,20 +10,23 @@ export const site = {
   // Statewide. Out-of-state projects are considered case by case, so word that as an invitation
   // to ask, never a promise.
   serviceArea: "Utah",
-  // Example cities across the state, listed on the home page and in structured data.
+  // Home county, named in page titles for local search. Copy should make clear the work isn't
+  // limited to it.
+  county: "Utah County",
+  // Example cities, home county first, listed on the home page and in structured data.
   serviceCities: [
     "Orem",
     "Provo",
     "Lehi",
+    "American Fork",
+    "Pleasant Grove",
+    "Spanish Fork",
     "Salt Lake City",
     "Sandy",
     "Draper",
     "Park City",
-    "Heber City",
     "Ogden",
-    "Logan",
     "St. George",
-    "Cedar City",
   ],
   license: {
     type: "Utah B100 General Contractor",

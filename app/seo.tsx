@@ -40,9 +40,10 @@ export function pageMetadata({
   };
 }
 
-/** Service area for JSON-LD: the state plus the cities listed on the home page. */
+/** Service area for JSON-LD: the state, the home county, and the cities listed on the home page. */
 export const areaServedJsonLd = [
   { "@type": "State", name: site.serviceArea },
+  { "@type": "AdministrativeArea", name: `${site.county}, UT` },
   ...site.serviceCities.map((city) => ({ "@type": "City", name: `${city}, UT` })),
 ];
 

@@ -849,6 +849,12 @@ a:focus-visible,
   color: var(--accent);
 }
 
+.cities .cities-more {
+  background: transparent;
+  color: var(--muted);
+  font-style: italic;
+}
+
 /* Contact page */
 
 .page-hero-compact {

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     path: "/",
     title: homeTitle,
     description:
-      "Licensed and insured general contractor in Orem, Utah. Home remodels, additions, and commercial tenant improvements across Utah. Call for a free estimate.",
+      "Licensed, insured general contractor in Orem, Utah. Remodels, additions, and commercial tenant improvements in Utah County and across Utah. Free estimates.",
   }),
   // Already includes the brand, so skip the "%s | Level Craft Construction" template.
   title: { absolute: homeTitle },
@@ -228,6 +228,7 @@ export default function Home() {
                 </div>
               </li>
             ))}
+            <li className="cities-more">and anywhere else in {site.serviceArea}</li>
           </ul>
         </div>
       </section>
@@ -238,9 +239,9 @@ export default function Home() {
             <p className="eyebrow">Service Area</p>
             <h2>Serving all of {site.serviceArea}</h2>
             <p className="section-intro">
-              Based in {site.city}, we build for homeowners and businesses across the state. Have a
-              project outside {site.serviceArea}? <Link href="/contact">Get in touch</Link>. We consider
-              out-of-state work case by case.
+              Based in {site.city}, in the heart of {site.county}, we build for homeowners and businesses
+              across the state. Have a project outside {site.serviceArea}?{" "}
+              <Link href="/contact">Get in touch</Link>. We consider out-of-state work case by case.
             </p>
           </div>
           <ul className="cities" aria-label="Cities we serve">
@@ -250,6 +251,7 @@ export default function Home() {
                 {city}
               </li>
             ))}
+            <li className="cities-more">and anywhere else in {site.serviceArea}</li>
           </ul>
         </div>
       </section>

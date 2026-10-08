@@ -5,9 +5,9 @@ import { pageMetadata } from "../seo";
 
 const page = {
   path: "/concrete/",
-  title: "Concrete Driveways & Patios in Utah",
+  title: "Concrete Driveways & Patios in Utah County",
   description:
-    "Concrete driveways, patios, walkways, and pads in Orem and across Utah from a licensed, insured Utah B100 general contractor. Free estimates.",
+    "Concrete driveways, patios, walkways, and pads in Utah County and across Utah from a licensed, insured general contractor. Free estimates.",
 };
 
 export const metadata: Metadata = pageMetadata(page);

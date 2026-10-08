@@ -21,7 +21,7 @@ There is no test suite or linter yet. `yarn build` (which type-checks) is the ve
 
 ## Layout
 
-- `app/site.ts`: business facts (legal name, owner, location, service area and `serviceCities`, license, phone, Formspree endpoint) and the `servicePages` list that drives the nav, footer, sitemap, and "Other services" links
+- `app/site.ts`: business facts (legal name, owner, location, service area, home `county`, and `serviceCities`, license, phone, Formspree endpoint) and the `servicePages` list that drives the nav, footer, sitemap, and "Other services" links
 - `app/faqs.ts`: FAQ answers shared across service pages (licensing, estimates, service area)
 - `app/layout.tsx`: root layout, default metadata (`metadataBase`, title template), and the business JSON-LD
 - `app/seo.tsx`: SEO helpers. `pageMetadata()` builds each page's title, description, canonical URL, and Open Graph/Twitter tags. `JsonLd` renders structured data.
@@ -60,7 +60,7 @@ There is no custom domain yet (no `public/CNAME`; `levelcraft.co` is still serve
 ### SEO
 
 - Every page exports `metadata` built with `pageMetadata()`, so it gets a canonical URL and share tags. New pages also go in `servicePages` (nav, footer, sitemap) when they are service pages.
-- Titles name the service and location ("... in Utah"). Descriptions stay under about 155 characters.
+- Titles name the service and the home county ("... in Utah County"), which helps local search. Descriptions and body copy make clear the work isn't limited to it ("in Utah County and across Utah"). Descriptions stay under about 155 characters.
 - Keep structured data truthful. Leave placeholder details (an empty license number) out of JSON-LD, and keep out-of-state work out of `areaServed`.
 
 ## Design theme

@@ -14,6 +14,6 @@ export const commonFaqs = {
   },
   area: {
     question: "What areas do you serve?",
-    answer: `We're based in ${site.city} and take on projects across all of ${site.serviceArea}, from ${site.serviceCities[2]} and ${site.serviceCities[3]} to ${site.serviceCities[10]}. Have a project outside ${site.serviceArea}? Get in touch. We consider out-of-state work case by case.`,
+    answer: `We're based in ${site.city} and work throughout ${site.county} and across all of ${site.serviceArea}, not just the cities listed on our site. Have a project outside ${site.serviceArea}? Get in touch. We consider out-of-state work case by case.`,
   },
 } satisfies Record<string, Faq>;

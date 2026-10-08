@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description:
-    "Licensed and insured general contractor in Orem, Utah. Home remodels, additions, and commercial tenant improvements across Utah. Call for a free estimate.",
+    "Licensed, insured general contractor in Orem, Utah. Remodels, additions, and commercial tenant improvements in Utah County and across Utah. Free estimates.",
   applicationName: site.name,
   formatDetection: { telephone: true },
   robots: { index: true, follow: true },
