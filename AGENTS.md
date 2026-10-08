@@ -21,15 +21,18 @@ There is no test suite or linter yet. `yarn build` (which type-checks) is the ve
 
 ## Layout
 
-- `app/site.ts`: business facts (legal name, owner, location, service area, home `county`, and `serviceCities`, license, phone, Formspree endpoint) and the `servicePages` list that drives the nav, footer, sitemap, and "Other services" links
+- `app/site.ts`: business facts (legal name, owner, location, service area, home `county`, and `serviceCities`, license, phone, Instagram, the other site's URL, Formspree endpoint) and the `servicePages` list that drives the nav, footer, sitemap, and "Other services" links
 - `app/faqs.ts`: FAQ answers shared across service pages (licensing, estimates, service area)
-- `app/layout.tsx`: root layout, default metadata (`metadataBase`, title template, icons, theme color), and the business JSON-LD. Setting `metadata.icons` replaces the automatic `app/icon.svg` link, so every icon is listed there.
+- `app/layout.tsx`: root layout, default metadata (`metadataBase`, title template, icons, theme color), and the business JSON-LD. Setting `metadata.icons` replaces the automatic `app/icon.svg` link, so every icon is listed there. The JSON-LD `sameAs` lists the business's profiles elsewhere (Instagram now; add Google Business Profile, Facebook, Houzz, etc. as they're created).
 - `app/seo.tsx`: SEO helpers. `pageMetadata()` builds each page's title, description, canonical URL, and Open Graph/Twitter tags. `JsonLd` renders structured data.
 - `app/sitemap.ts`, `app/robots.ts`: generate `sitemap.xml` and `robots.txt` at build time. The sitemap lists the home page, the contact page, and `servicePages`.
 - `app/og.png/route.tsx`: generates the social share image (`/og.png`, 1200×630) at build time. `apple-touch-icon.png/` and `icon-512.png/` generate PNG icons the same way (link previews, iOS and Android home screens), from `components/MarkImage.tsx`. `app/manifest.ts` generates `manifest.webmanifest`.
 - Share previews need `site.url` to be the live domain, since `og:image` is an absolute URL built from it. Messaging apps cache previews, so a fix can take a while to show for a link that was already shared.
 - `app/contact/`: contact page with the estimate request form (`components/ContactForm.tsx`, a client component). The form posts to Formspree (`site.formEndpoint`); name and phone are required, email and message optional. The estimate buttons across the site link here.
-- `app/page.tsx`: the homepage. Content (services, process steps, values) lives in arrays at the top of the file.
+- `app/page.tsx`: the homepage. Content (services, process steps, values) lives in arrays at the top of the file. After the credentials strip, a "Recent Projects" section shows `components/PhotoCarousel.tsx` (auto-advancing, pauses on hover/focus, no autoplay with reduced motion) when there are photos.
+- `public/gallery/`: project photos for the carousel. `app/gallery.ts` reads the folder at build time; files show in name order and alt text comes from the file name (`01-basement-family-room-orem.jpg` → "Basement family room orem"). No folder or no images means no carousel section. Resize photos to about 1600px wide before adding them.
+- `app/not-found.tsx`: the 404 page (exported as `404.html`). It links to the same path on the other site (`site.otherSiteUrl`, via `components/OtherSiteLink.tsx`). That's the only place the two sites link to each other.
+- `components/LeadSourceTracker.tsx` (rendered in the layout) remembers how a visitor arrived (a `utm_source` tag, a referring site, or "direct") in sessionStorage, and the contact form sends it as hidden `source` and `landing_page` fields, so Formspree emails show where each lead came from. QR codes and printed materials should use `?utm_source=...` links.
 - `app/home-renovation/`, `app/basement-finishing/`, `app/concrete/`, `app/commercial/`, `app/hvac/`: service landing pages, to be built out further for SEO and targeting. Each currently renders the shared `ServicePage` template with its own content and `metadata`. A page defines a `page` object (path with trailing slash, title, description), passes it to `pageMetadata()` and `ServicePage`, which emits `Service`, `BreadcrumbList`, and `FAQPage` JSON-LD and renders the page's `faqs` plus links to the other service pages. FAQ answers must be visible on the page and truthful. A page can diverge from the template when it needs to.
 - `app/components/SiteHeader.tsx` (top bar with license and phone, sticky header), `NavLinks.tsx` (client component: desktop links, the mobile menu, and current-page highlighting), `SiteFooter.tsx` (multi-column), `ContactCTA.tsx`: shared across pages. The header and footer are rendered in `app/layout.tsx`.
 - `app/components/Logo.tsx`: stand-in spirit-level mark plus the wordmark. Keep it, `app/icon.svg`, and `components/MarkImage.tsx` in sync.
@@ -53,7 +56,7 @@ Forms must post to a third-party service or use `mailto:`. The site uses Formspr
 
 ### Domain
 
-The site is served at the custom domain `levelcraftconstruction.com`, set under **Settings → Pages → Custom domain** (deploys from Actions ignore `public/CNAME`; it's kept as a record). `site.url` must match it, since canonical URLs, share tags (`og:url`, `og:image`), the sitemap, and JSON-LD are built from it. The deploy workflow still passes the Pages path prefix to `next.config.ts` as `PAGES_BASE_PATH`, which is empty with a custom domain (it was `/level-craft-professional` before one was set). `levelcraft.co` is served by the original `level-craft` repo.
+The site is served at the custom domain `levelcraftconstruction.com`, set under **Settings → Pages → Custom domain** (deploys from Actions ignore `public/CNAME`; it's kept as a record). `site.url` must match it, since canonical URLs, share tags (`og:url`, `og:image`), the sitemap, and JSON-LD are built from it. The deploy workflow still passes the Pages path prefix to `next.config.ts` as `PAGES_BASE_PATH`, which is empty with a custom domain (it was `/level-craft-professional` before one was set). `levelcraft.co` is served by the original `level-craft` repo and is the **main** site for SEO; both sites are kept.
 
 - Use `next/link` for internal page links so they get the `basePath`. Don't hard-code root-relative URLs in plain `<a>` tags, CSS `url(/...)`, or `<img src>`.
 - Hash links (`#services`) are fine. `#contact` works on every page: content pages render `ContactCTA`, and the contact page puts it on the form section.
@@ -71,7 +74,7 @@ A clean, **professional** contractor site whose job is to win construction, reno
 - Fonts: **Archivo** (`--font-heading`, weights 600–800) for headings, the wordmark, and large numerals; **Inter** (`--font-sans`) for everything else.
 - Colors: dark navy (`--navy`, `--ink`) for the hero, panels, CTA, and footer; warm stone (`--surface`) for alternating sections; copper (`--accent`) for primary buttons, eyebrows, and icons, with `--accent-light` on dark backgrounds. Keep text contrast at WCAG AA.
 - Layout patterns: top bar with license and phone, sticky white header, navy hero with a faint blueprint grid and a white contact card, a credentials strip, two-column section heads (heading left, intro right), bordered cards with soft shadows on hover, numbered process steps (01–04), and a split About section.
-- Icons: add new ones to `Icon.tsx` as simple 24×24 stroked paths. No raster images until real project photos are provided.
+- Icons: add new ones to `Icon.tsx` as simple 24×24 stroked paths. The only raster images are real project photos in `public/gallery/`.
 - Eyebrows are small uppercase labels with a short rule before them (`.eyebrow`, `.eyebrow-light` on dark).
 
 ## Conventions

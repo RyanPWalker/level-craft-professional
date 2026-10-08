@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import ContactCTA from "./components/ContactCTA";
 import Icon, { type IconName } from "./components/Icon";
+import PhotoCarousel from "./components/PhotoCarousel";
+import { getGalleryPhotos } from "./gallery";
 import { pageMetadata } from "./seo";
 import { site } from "./site";
 
@@ -92,6 +94,7 @@ const values = [
 ];
 
 export default function Home() {
+  const photos = getGalleryPhotos();
   return (
     <main>
       <section className="hero">
@@ -137,6 +140,24 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {photos.length > 0 && (
+        <section id="projects" className="section section-alt">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Recent Projects</p>
+                <h2>Our recent work</h2>
+              </div>
+              <p className="section-intro">
+                A look at projects from around {site.serviceArea}. Follow along on Instagram at{" "}
+                <a href={site.instagram.url} rel="noopener">@{site.instagram.handle}</a>.
+              </p>
+            </div>
+            <PhotoCarousel photos={photos} label="Recent project photos" />
+          </div>
+        </section>
+      )}
 
       <section id="services" className="section">
         <div className="container">

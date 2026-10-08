@@ -25,6 +25,7 @@ export default function SiteFooter() {
           <h2 className="footer-heading">Contact</h2>
           <Link href="/contact">Request an estimate</Link>
           <a href={site.phone.href}>{site.phone.display}</a>
+          <a href={site.instagram.url} rel="noopener">Instagram</a>
           <span>{site.city}, {site.state}</span>
         </div>
         <div className="footer-col">
