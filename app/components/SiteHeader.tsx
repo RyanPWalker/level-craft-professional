@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Icon from "./Icon";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
@@ -21,7 +22,7 @@ export default function SiteHeader() {
         <div className="container nav-inner">
           <Logo />
           <NavLinks />
-          <a href="#contact" className="btn btn-small nav-cta">Request an Estimate</a>
+          <Link href="/contact" className="btn btn-small nav-cta">Request an Estimate</Link>
         </div>
       </header>
     </>

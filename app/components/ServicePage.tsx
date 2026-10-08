@@ -69,7 +69,7 @@ export default function ServicePage(props: ServicePageProps) {
             <h1>{props.title}</h1>
             <p className="lead">{props.lead}</p>
             <div className="hero-actions">
-              <a href="#contact" className="btn">Request an Estimate</a>
+              <Link href="/contact" className="btn">Request an Estimate</Link>
               <a href={site.phone.href} className="btn btn-outline-light">Call {site.phone.display}</a>
             </div>
           </div>

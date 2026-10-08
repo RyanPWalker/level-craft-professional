@@ -848,6 +848,168 @@ a:focus-visible,
   color: var(--accent);
 }
 
+/* Contact page */
+
+.page-hero-compact {
+  grid-template-columns: 1fr;
+  padding: 3.5rem 0 4rem;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.form-card {
+  padding: 2.5rem;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.contact-form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.contact-form .btn {
+  justify-self: start;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.contact-form .btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.field-required,
+.field-optional {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.field-required {
+  color: var(--accent);
+}
+
+.field-optional {
+  color: var(--muted);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid #cfc7bb;
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+}
+
+.form-error {
+  margin: 0;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius);
+  background: #fdecea;
+  color: #8a1c12;
+}
+
+.form-error a,
+.form-success a {
+  color: inherit;
+  font-weight: 600;
+}
+
+.form-success h2 {
+  font-size: 1.6rem;
+}
+
+.form-success p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.contact-aside {
+  display: grid;
+  gap: 2rem;
+}
+
+.contact-heading {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact-aside .hero-card-phone {
+  margin: 0 0 0.75rem;
+}
+
+.contact-detail {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--muted);
+}
+
+.contact-detail svg {
+  flex: none;
+  margin-top: 0.25rem;
+  color: var(--accent);
+}
+
+.next-steps {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}
+
+.next-steps li + li {
+  margin-top: 0.4rem;
+}
+
 /* Contact CTA */
 
 .cta {
@@ -1020,6 +1182,7 @@ a:focus-visible,
 @media (max-width: 800px) {
   .hero-inner,
   .page-hero-inner,
+  .contact-layout,
   .faq-layout,
   .areas,
   .about,
@@ -1070,6 +1233,7 @@ a:focus-visible,
 
   .grid,
   .steps,
+  .form-row,
   .credentials-grid,
   .footer-grid {
     grid-template-columns: 1fr;
@@ -1085,6 +1249,7 @@ a:focus-visible,
   }
 
   .hero-card,
+  .form-card,
   .glance,
   .card,
   .sector {

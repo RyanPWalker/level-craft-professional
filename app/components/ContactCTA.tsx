@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Icon from "./Icon";
 import { site } from "../site";
 
@@ -14,6 +15,7 @@ export default function ContactCTA({ title = "Let's talk about your project." }:
           </p>
         </div>
         <div className="cta-actions">
+          <Link href="/contact" className="btn">Request an Estimate Online</Link>
           <a href={site.phone.href} className="cta-item">
             <Icon name="phone" />
             <span>

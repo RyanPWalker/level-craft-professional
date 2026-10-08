@@ -104,7 +104,7 @@ export default function Home() {
               licensed contractor managing your project from estimate to final walkthrough.
             </p>
             <div className="hero-actions">
-              <a href="#contact" className="btn">Request a Free Estimate</a>
+              <Link href="/contact" className="btn">Request a Free Estimate</Link>
               <a href="#services" className="btn btn-outline-light">View Services</a>
             </div>
           </div>

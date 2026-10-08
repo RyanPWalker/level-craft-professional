@@ -23,6 +23,7 @@ export default function SiteFooter() {
         </nav>
         <div className="footer-col">
           <h2 className="footer-heading">Contact</h2>
+          <Link href="/contact">Request an estimate</Link>
           <a href={site.phone.href}>{site.phone.display}</a>
           <a href={`mailto:${site.email}`}>{site.email}</a>
           <span>{site.city}, {site.state}</span>

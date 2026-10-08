@@ -38,7 +38,7 @@ export default function NavLinks() {
             {page.title}
           </Link>
         ))}
-        <a href="#contact" className="btn" onClick={() => setOpen(false)}>Request an Estimate</a>
+        <Link href="/contact" className="btn">Request an Estimate</Link>
       </nav>
     </>
   );

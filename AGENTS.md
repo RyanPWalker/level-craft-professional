@@ -25,8 +25,9 @@ There is no test suite or linter yet. `yarn build` (which type-checks) is the ve
 - `app/faqs.ts`: FAQ answers shared across service pages (licensing, estimates, service area)
 - `app/layout.tsx`: root layout, default metadata (`metadataBase`, title template), and the business JSON-LD
 - `app/seo.tsx`: SEO helpers. `pageMetadata()` builds each page's title, description, canonical URL, and Open Graph/Twitter tags. `JsonLd` renders structured data.
-- `app/sitemap.ts`, `app/robots.ts`: generate `sitemap.xml` and `robots.txt` at build time. The sitemap lists the home page plus `servicePages`.
+- `app/sitemap.ts`, `app/robots.ts`: generate `sitemap.xml` and `robots.txt` at build time. The sitemap lists the home page, the contact page, and `servicePages`.
 - `app/og.png/route.tsx`: generates the social share image (`/og.png`) at build time
+- `app/contact/`: contact page with the estimate request form (`components/ContactForm.tsx`, a client component). The form posts to Formspree (`site.formEndpoint`); name and phone are required, email and message optional. The estimate buttons across the site link here.
 - `app/page.tsx`: the homepage. Content (services, process steps, values) lives in arrays at the top of the file.
 - `app/home-renovation/`, `app/basement-finishing/`, `app/concrete/`, `app/commercial/`, `app/hvac/`: service landing pages, to be built out further for SEO and targeting. Each currently renders the shared `ServicePage` template with its own content and `metadata`. A page defines a `page` object (path with trailing slash, title, description), passes it to `pageMetadata()` and `ServicePage`, which emits `Service`, `BreadcrumbList`, and `FAQPage` JSON-LD and renders the page's `faqs` plus links to the other service pages. FAQ answers must be visible on the page and truthful. A page can diverge from the template when it needs to.
 - `app/components/SiteHeader.tsx` (top bar with license and phone, sticky header), `NavLinks.tsx` (client component: desktop links, the mobile menu, and current-page highlighting), `SiteFooter.tsx` (multi-column), `ContactCTA.tsx`: shared across pages. The header and footer are rendered in `app/layout.tsx`.
@@ -47,14 +48,14 @@ There is no test suite or linter yet. `yarn build` (which type-checks) is the ve
 - Dynamic routes without `generateStaticParams`
 - `next/image` optimization (it's disabled through `images.unoptimized`)
 
-Forms must post to a third-party service (e.g. Formspree) or use `mailto:`.
+Forms must post to a third-party service or use `mailto:`. The site uses Formspree (`site.formEndpoint`).
 
 ### Domain
 
 There is no custom domain yet (no `public/CNAME`; `levelcraft.co` is still served by the original repo), so GitHub Pages serves this site at `https://ryanpwalker.github.io/level-craft-professional/`. The deploy workflow passes that path prefix to `next.config.ts` as `PAGES_BASE_PATH`; it becomes empty once a custom domain is set. `site.url` (canonical URLs, sitemap, JSON-LD) stays `https://levelcraft.co`, the intended final domain.
 
 - Use `next/link` for internal page links so they get the `basePath`. Don't hard-code root-relative URLs in plain `<a>` tags, CSS `url(/...)`, or `<img src>`.
-- Hash links (`#services`) are fine. `#contact` works on every page because each page renders `ContactCTA`.
+- Hash links (`#services`) are fine. `#contact` works on every page: content pages render `ContactCTA`, and the contact page puts it on the form section.
 
 ### SEO
 
@@ -76,7 +77,7 @@ A clean, **professional** contractor site whose job is to win construction, reno
 
 - TypeScript, App Router, React Server Components by default. Add `"use client"` only when interactivity requires it.
 - Styling: plain CSS in `globals.css`. Reuse the existing tokens (`--navy`, `--accent`, `--surface`, etc.) and classes (`.container`, `.section`, `.section-head`, `.card`, `.btn`, `.eyebrow`, `.checklist`). Don't add Tailwind or a CSS-in-JS library unless asked.
-- Keep it mobile-friendly. The existing breakpoints are `max-width: 960px` (two-column grids, header CTA hides), `800px` (hero and split sections stack), and `600px` (nav links hide, single-column grid).
+- Keep it mobile-friendly. The existing breakpoints are `max-width: 960px` (two-column grids, header CTA hides), `860px` (nav links collapse into the mobile menu), `800px` (hero and split sections stack), and `600px` (single-column grid).
 - Keep dependencies minimal.
 
 ## Yarn notes
