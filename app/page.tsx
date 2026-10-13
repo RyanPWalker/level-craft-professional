@@ -7,6 +7,9 @@ import { getGalleryPhotos } from "./gallery";
 import { pageMetadata } from "./seo";
 import { site } from "./site";
 
+// Plain <img> tags don't get the basePath automatically (only set without a custom domain).
+const basePath = process.env.PAGES_BASE_PATH ?? "";
+
 const homeTitle = `${site.name} | General Contractor in ${site.city}, ${site.state}`;
 
 export const metadata: Metadata = {
@@ -236,6 +239,17 @@ export default function Home() {
               general contractor from framing and drywall to tile, concrete, and finish carpentry, and
               coordinating the specialty trades along the way.
             </p>
+            <figure className="owner-photo">
+              <img
+                src={`${basePath}/images/owner-joaquin-harris.webp`}
+                alt={`${site.owner}, owner of ${site.name}, reviewing plans in the shop`}
+                width={900}
+                height={1200}
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>{site.owner}, owner</figcaption>
+            </figure>
           </div>
           <ul className="values">
             {values.map((v) => (
@@ -249,7 +263,6 @@ export default function Home() {
                 </div>
               </li>
             ))}
-            <li className="cities-more">and anywhere else in {site.serviceArea}</li>
           </ul>
         </div>
       </section>

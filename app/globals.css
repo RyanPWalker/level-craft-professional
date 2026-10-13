@@ -655,6 +655,29 @@ a:focus-visible,
   align-items: start;
 }
 
+.owner-photo {
+  max-width: 400px;
+  margin: 2rem 0 0;
+}
+
+.owner-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.owner-photo figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
 .values {
   list-style: none;
   margin: 0;
