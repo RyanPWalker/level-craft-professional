@@ -14,6 +14,9 @@ const page = {
 
 export const metadata: Metadata = pageMetadata(page);
 
+// Plain <img> tags don't get the basePath automatically (only set without a custom domain).
+const basePath = process.env.PAGES_BASE_PATH ?? "";
+
 const nextSteps = [
   "We call you back to talk through the project.",
   "We schedule a site visit to see the space and scope the work.",
@@ -34,7 +37,7 @@ export default function ContactPage() {
     <main>
       <JsonLd data={breadcrumbJsonLd} />
       <section className="page-hero">
-        <div className="container page-hero-inner page-hero-compact">
+        <div className="container page-hero-inner contact-hero">
           <div>
             <nav className="breadcrumb" aria-label="Breadcrumb">
               <Link href="/">Home</Link>
@@ -47,6 +50,16 @@ export default function ContactPage() {
               schedule a site visit.
             </p>
           </div>
+          <figure className="hero-owner">
+            <img
+              src={`${basePath}/images/owner-joaquin-harris.webp`}
+              alt={`${site.owner}, owner of ${site.name}`}
+              width={900}
+              height={1200}
+              decoding="async"
+            />
+            <figcaption>Talk with {site.owner}, owner</figcaption>
+          </figure>
         </div>
       </section>
 

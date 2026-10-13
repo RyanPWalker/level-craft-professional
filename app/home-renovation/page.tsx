@@ -20,6 +20,7 @@ export default function HomeRenovationPage() {
       title="Home remodels and additions, built right."
       lead="Remodels, additions, repairs, and improvements across Utah — planned carefully and built to last, so you can love the home you already have."
       icon="home"
+      heroPhoto={{ src: "/images/tool-belt-level.webp" }}
       offeringsTitle="Renovations We Build"
       offerings={[
         { title: "Remodels", text: "Kitchens, bathrooms, basements, and whole rooms, managed as one project with one team." },

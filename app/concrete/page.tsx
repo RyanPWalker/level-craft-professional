@@ -20,6 +20,7 @@ export default function ConcretePage() {
       title="Concrete driveways, patios, and walkways."
       lead="Concrete flatwork across Utah, formed, poured, and finished by our own crew, on its own or as part of a larger remodel or addition."
       icon="grid"
+      heroPhoto={{ src: "/images/surveyor-level-tripod.jpg", soft: true }}
       offeringsTitle="Concrete Services"
       offerings={[
         { title: "Driveways", text: "New concrete driveways and driveway extensions." },

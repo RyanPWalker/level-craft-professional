@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ContactCTA from "./ContactCTA";
+import { heroPhotoProps, type HeroPhoto } from "./heroPhoto";
 import Icon, { type IconName } from "./Icon";
 import type { Faq } from "../faqs";
 import { areaServedJsonLd, businessId, JsonLd } from "../seo";
@@ -12,6 +13,7 @@ export type ServicePageProps = {
   title: string;
   lead: string;
   icon: IconName;
+  heroPhoto?: HeroPhoto;
   offeringsTitle: string;
   offeringsIntro?: string;
   offerings: { title: string; text: string }[];
@@ -58,7 +60,7 @@ export default function ServicePage(props: ServicePageProps) {
       <JsonLd data={serviceJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={faqJsonLd} />
-      <section className="page-hero">
+      <section {...heroPhotoProps(props.heroPhoto, "page-hero")}>
         <div className="container page-hero-inner">
           <div>
             <nav className="breadcrumb" aria-label="Breadcrumb">

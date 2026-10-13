@@ -358,6 +358,35 @@ a:focus-visible,
   background-size: 40px 40px, 40px 40px, 100% 100%;
 }
 
+/* Page header with a background photo (see components/heroPhoto.ts) */
+.page-hero.has-photo {
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.page-hero.has-photo::before,
+.page-hero.has-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.page-hero.has-photo::before {
+  z-index: -2;
+  background: var(--hero-photo) center / cover no-repeat;
+}
+
+.page-hero.photo-soft::before {
+  filter: blur(3px);
+  transform: scale(1.08);
+}
+
+/* Navy overlay, heaviest behind the text on the left. */
+.page-hero.has-photo::after {
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(19, 35, 58, 0.94) 0%, rgba(19, 35, 58, 0.86) 55%, rgba(19, 35, 58, 0.72) 100%);
+}
+
 .hero h1,
 .page-hero h1 {
   color: #fff;
@@ -989,6 +1018,35 @@ a:focus-visible,
 
 /* Contact page */
 
+.contact-hero {
+  grid-template-columns: 1fr auto;
+  padding: 3.5rem 0 4rem;
+}
+
+.hero-owner {
+  width: 220px;
+  margin: 0;
+}
+
+.hero-owner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 30%;
+  border: 4px solid #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hero-owner figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+}
+
 .page-hero-compact {
   grid-template-columns: 1fr;
   padding: 3.5rem 0 4rem;
@@ -1319,8 +1377,13 @@ a:focus-visible,
 }
 
 @media (max-width: 800px) {
+  .hero-owner {
+    display: none;
+  }
+
   .hero-inner,
   .page-hero-inner,
+  .contact-hero,
   .contact-layout,
   .faq-layout,
   .areas,

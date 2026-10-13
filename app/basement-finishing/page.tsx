@@ -21,6 +21,7 @@ export default function BasementFinishingPage() {
       title="Finished basements, built like the rest of your home."
       lead="Turn unfinished square footage into bedrooms, family rooms, and storage. Our crew frames, finishes, and trims the space, and we coordinate the plumbing, electrical, and HVAC trades, all on one schedule."
       icon="layers"
+      heroPhoto={{ src: "/images/tool-belt-hard-hat.jpg", soft: true }}
       offeringsTitle="Basement Finishing Services"
       offeringsIntro="Full basement finishes, partial finishes, and remodels of basements that are already finished."
       offerings={[
