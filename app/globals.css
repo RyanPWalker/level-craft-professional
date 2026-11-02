@@ -1328,6 +1328,14 @@ a:focus-visible,
   margin: 0;
 }
 
+.footer-credit a {
+  color: inherit;
+}
+
+.footer-credit a:hover {
+  color: #fff;
+}
+
 /* Responsive */
 
 @media (max-width: 960px) {

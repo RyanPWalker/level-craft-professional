@@ -38,6 +38,9 @@ export default function SiteFooter() {
       <div className="container footer-legal">
         <p>&copy; {year} {site.legalName}. All rights reserved.</p>
         <p>{site.name}</p>
+        <p className="footer-credit">
+          Website made by <a href="https://thorsteingames.com/" rel="noopener">Thorstein Games</a>
+        </p>
       </div>
     </footer>
   );
